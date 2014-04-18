@@ -7,7 +7,7 @@ from django.conf import settings
 # }
 
 settings.INSTALLED_APPS += (
-    'dmn.dmn_local',
+    'dmn_local',
     'dmn.dmn_utils',
     'dmn.dmn_gallery',
     'dmn.dmn_files',
