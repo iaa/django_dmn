@@ -1,17 +1,16 @@
 from django.conf import settings
 
-__all__ = []
+# __all__ = []
 
-_DEFAULTS = {
-    'CAS_TICKET_EXPIRATION': 5, # In minutes
-}
+# _DEFAULTS = {
+#     'CAS_TICKET_EXPIRATION': 5, # In minutes
+# }
 
 settings.INSTALLED_APPS += (
-    'dmn',
-    'dmn_local',
-    'dmn_utils',
-    'dmn_gallery',
-    'dmn_files',
+    'dmn.dmn_local',
+    'dmn.dmn_utils',
+    'dmn.dmn_gallery',
+    'dmn.dmn_files',
     'mptt',
     'annoying',
     'picklefield',
@@ -20,10 +19,10 @@ settings.INSTALLED_APPS += (
     # 'markitup'
 )
 
-for key, value in _DEFAULTS.iteritems():
-    try:
-        getattr(settings, key)
-    except AttributeError:
-        setattr(settings, key, value)
-    except ImportError:
-        pass
+# for key, value in _DEFAULTS.iteritems():
+#     try:
+#         getattr(settings, key)
+#     except AttributeError:
+#         setattr(settings, key, value)
+#     except ImportError:
+#         pass
