@@ -19,5 +19,3 @@ _REQUIREMENTS = (
 for k in _REQUIREMENTS:
     if k not in settings.INSTALLED_APPS:
         settings.INSTALLED_APPS += (k, )
-
-print settings.INSTALLED_APPS
