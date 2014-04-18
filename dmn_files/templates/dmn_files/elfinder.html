@@ -1,0 +1,79 @@
+{% extends 'dmn_base.html' %}
+{% block head %}
+{{ block.super }}
+<script src="/static/dmn/elfinder2/jquery/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/dmn/elfinder2/jquery/jquery-ui-1.10.1.custom.min.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="/static/dmn/elfinder2/jquery/ui-themes/smoothness/jquery-ui-1.10.1.custom.min.css" type="text/css" media="screen"  charset="utf-8">
+<link rel="stylesheet" href="/static/dmn/elfinder2/css/elfinder.min.css" type="text/css" media="screen"  charset="utf-8">
+<link rel="stylesheet" href="/static/dmn/elfinder2/css/theme.css" type="text/css" media="screen"  charset="utf-8">
+
+<script src="/static/dmn/elfinder2/js/elfinder.min.js" type="text/javascript" type="text/javascript" charset="utf-8"></script>
+<script src="/static/dmn/elfinder2/js/i18n/elfinder.ru.js" type="text/javascript" type="text/javascript" charset="utf-8"></script>
+<script src="/static/dmn/elfinder2/js/proxy/elFinderSupportVer1.js" type="text/javascript" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript" charset="utf-8">
+
+$().ready(function() {
+    var funcNum = window.location.search.replace(/^.*CKEditorFuncNum=(\d+).*$/, "$1");
+	var langCode = window.location.search.replace(/^.*langCode=([a-z]{2}).*$/, "$1");
+    $('#finder').elfinder({
+        url : '/dmn/elfinder2_connector/',
+        transport : new elFinderSupportVer1(),
+        height: 490,
+        commandsOptions : {
+            getfile : {
+                    // allow to return multiple files info
+                    //multiple : true,
+                    // action after callback (""/"close"/"destroy")
+                    oncomplete : ''
+            },
+        },
+        // onlyMimes : ['image', 'text/plain']
+        lang : 'ru',
+        commands : [
+                    'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook', 
+                    //'download', 
+                    'rm', 
+                    //'duplicate', 
+                    'rename', 'mkdir', 
+                    //'mkfile', 
+                    'upload', 'copy', 'cut', 'paste', 
+                    //'edit', 
+                    'extract', 'archive', 
+                    //'search', 
+                    'info', 'view', 'help',
+                    //'resize', 
+                    'sort', 'resize'
+                ],
+  //       editorCallback: function(url) {
+		//     window.opener.CKEDITOR.tools.callFunction(funcNum, url);
+		// 	window.close();
+		// }
+        getFileCallback: function (file, instance) { 
+console.log(file); 
+
+window.opener.CKEDITOR.tools.callFunction(funcNum, file); 
+window.close(); 
+}
+    })
+})
+
+</script>
+{% endblock head %}
+{% block body %}
+<div class="widget_container">
+        {% if help_model %}
+            <div class="inner_wrapper">{{ help_model }}</div>
+        {% endif %}
+        <div class="well nomargin">
+            <div class="navbar navbar-static navbar_as_heading">
+                <div class="navbar-inner">
+                    <div class="container" style="width: auto;">
+                        <a class="brand">Файловый менеджер</a>
+                    </div>
+                </div>
+            </div>
+            <div id="finder">filemanager loading...</div>
+        </div>
+
+{% endblock body %}

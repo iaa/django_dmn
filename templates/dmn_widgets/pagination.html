@@ -1,0 +1,35 @@
+{% load urls %}
+<div class="pagination pull-right" style="margin-left: 20px;">
+    <ul>
+        {% if ipagination.current > 1 %}
+            <li><a href="{% add_params path page=1 %}">1</a></li>
+            <li class="disabled"><a href="#">...</a></li>
+            {% if ipagination.i_previous %}
+                <li><a href="{% add_params path page=ipagination.i_previous %}"><<</a></li>
+            {% endif %}
+            {% if ipagination.prev %}
+                {% for i in ipagination.prev %}
+                    <li><a href="{% add_params path page=i %}">{{ i }}</a></li>
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+        {% if not ipagination.last_page == 1 %}
+            <li class="active"><a href="{% add_params path page=ipagination.current %}">{{ ipagination.current }}</a>
+            </li>
+        {% endif %}
+        {% if ipagination.current < ipagination.last_page %}
+            {% if ipagination.next %}
+                {% for i in ipagination.next %}
+                    <li><a href="{% add_params path page=i %}">{{ i }}</a></li>
+                {% endfor %}
+            {% endif %}
+            {% if ipagination.i_next %}
+                <li><a href="{% add_params path page=ipagination.i_next %}">>></a></li>
+            {% endif %}
+            <li class="disabled"><a href="#">...</a></li>
+            <li>
+                <a href="{% add_params path page=ipagination.last_page %}">{{ ipagination.last_page }}</a>
+            </li>
+        {% endif %}
+    </ul>
+</div>

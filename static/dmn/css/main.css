@@ -1,0 +1,97 @@
+body {
+    margin-top:10px;
+}
+form .createup {
+
+}
+
+form.createup textarea,
+form.createup select {
+    width:99%;
+}
+form.createup input[type="checkbox"] {
+    width:auto;
+}
+form.createup input {
+    width:99%;
+}
+form.createup .submit {
+    width:auto;
+}
+
+.chbx_delete {
+    display: none;
+}
+.ifadein {
+    display: none;
+}
+
+/*   PLUS BOOTSTRAP  */
+table.table thead .sorting,
+table.table thead .sorting_asc,
+table.table thead .sorting_desc,
+table.table thead .sorting_asc_disabled,
+table.table thead .sorting_desc_disabled {
+    cursor: pointer;
+    *cursor: hand;
+}
+ 
+table.table thead .sorting { background: url('../img/sort_both.png') no-repeat center right; }
+table.table thead .sorting_asc { background: url('../img/sort_asc.png') no-repeat center right; }
+table.table thead .sorting_desc { background: url('../img/sort_desc.png') no-repeat center right; }
+ 
+table.table thead .sorting_asc_disabled { background: url('../img/sort_asc_disabled.png') no-repeat center right; }
+table.table thead .sorting_desc_disabled { background: url('../img/sort_desc_disabled.png') no-repeat center right; }
+
+
+table .iaa {
+    font-size: 10px;
+}
+table .iaa th, table .iaa td {
+    padding: 1px 2px;
+
+}
+
+.form-horizontal .control-label {
+    width: 270px;
+}
+
+.form-horizontal .controls {
+    margin-left: 290px;
+}
+
+.bgray {
+    background-color: gray;
+}
+
+/* Upload Gallery
+    ================================================== */
+
+/*form.form_gallery { display: block; margin: 20px auto; background: #eee; border-radius: 10px; padding: 15px }*/
+    .progress { position:relative; width:auto; border: 1px solid #ddd; padding: 1px; border-radius: 3px; }
+    .bar { background-color: #B4F5B4; width:0%; height:20px; border-radius: 3px; }
+    .percent { position:absolute; display:inline-block; top:3px; left:48%; }
+    label.img { cursor: pointer; }
+    .img_hide { display: none; }
+    .state-highlight{ width:128px; height: 128px; border: 1px solid gray; }
+    .tooltipe {
+        display:none;
+        background:transparent url(/static/js/tools/img/black_arrow.png);
+        font-size:12px;
+        height:70px;
+        width:160px;
+        padding:25px;
+        color:#eee;
+      }
+
+/* Ajax Form submit
+    ================================================== */
+.bord_red {
+    border-color: red;
+}
+
+/* Tree
+    ================================================== */
+
+
+

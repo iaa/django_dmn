@@ -1,0 +1,22 @@
+
+    {% load mptt_tags %}
+
+    <div id="header" class="navbar navbar-fixed-top">
+        <div id="top_nav" class="nav_down bar_nav grid_16 round_all">
+            <ul class="round_all clearfix">
+                {% recursetree nodes %}
+                    <li class="isherpa">
+                        {% if node.is_leaf_node %}
+                            <a href="{{ node.link }}">{{ node.name }}</a>
+                        {% else %}
+                            <a href="{{ node.link }}">{{ node.name }}<span class="icon"></span></a>
+                            <ul>
+                                <li class="isherpa">{{ children }}</li>
+                            </ul>
+                        {% endif %}
+                    </li>
+                {% endrecursetree %}
+                <li class="send_right"><a href="/dmn/accounts/logout/"><img src="/static/dmn/sherpa/images/icons/white/Key.png">Выход({{ username }})</a></li>
+            </ul>
+        </div>
+    </div>

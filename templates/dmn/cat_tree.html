@@ -1,0 +1,120 @@
+{% extends 'dmn_base.html' %}
+{% load mptt_tags %}
+
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="/static/dmn/jqTree/jqtree.css">
+    <script src="/static/dmn/jqTree/tree.jquery.js" type="text/javascript" charset="utf-8"></script>
+    <!-- TreeView source file -->
+    <script>
+        // wait for the DOM to be loaded 
+        $(document).ready(function () {
+
+            var $tree = $('#tree');
+            var data = [
+                {% recursetree nodes %}
+                    {
+                        id:"{{ node.id }}",
+                        pid:"{{ node.parent_id }}",
+                        label:"{{ node.name }}",
+                        hide:"{{ node.hide }}",
+                        children:[{{ children }}]
+                    },
+                {% endrecursetree %}
+            ];
+
+            function cntMenu(id) {
+
+            }
+
+            $(function () {
+                $tree.tree({
+                    data:data,
+                    autoOpen:false,
+                    dragAndDrop:false,
+                    //selectable: true,
+                    saveState:true,
+                    onCreateLi:function (node, $li) {
+                        // Add 'icon' span before title
+                        if (node.hide == 1) {
+                            $li.find('.title').css('opacity', '0.2');
+                        }
+                        $li.addClass('ili');
+                        $li.find('.title').addClass('badge badge-info');
+                    }
+                });
+            });
+
+            
+            $tree.bind(
+                    'tree.click',
+                    function (event) {
+                        var node = event.node;
+                        // The clicked node is 'event.node'
+                        if (node.children == '') {
+                            var url = '/dmn/{{ related_list }}/list/?related_table={{ related_table }}&related_name=id&related_value='+node.id;
+                            window.location.href = url
+                        }
+                        else {
+                            if (node.is_open) {
+                                $tree.tree('closeNode', node);
+                            }
+                            else {
+                                $tree.tree('openNode', node);
+                            }
+                        }
+                    }
+            );
+
+        });
+    </script>
+
+    <style type="text/css">
+        #tree .title {
+            font-size: 12px;
+        }
+
+        #tree .ili {
+            padding: 2px 2px 4px 2px;
+            margin: 0px 0px 0px 0px;
+            padding-top: 0px;
+        }
+
+        ul.tree li.folder ul {
+            margin-top: 4px;
+        }
+
+        .label {
+
+        }
+
+        ul.tree ul {
+            margin-left: 20px;
+        }
+
+        .border {
+            border: dashed 1px gray;
+        }
+    </style>
+
+{% endblock head %}
+{% block body %}
+    <div class="main_content">
+        <div class="widget_container">
+            {% if help_model %}
+                <div class="inner_wrapper">{{ help_model }}</div>
+            {% endif %}
+            <div class="well">
+                <div class="navbar navbar-static navbar_as_heading">
+                    <div class="navbar-inner">
+                        <div class="container" style="width: auto;">
+                            <a class="brand"><i class="icon-th-large-1"></i> {{ title_model }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="tree" class="navbar" style="padding: 5px;"></div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}

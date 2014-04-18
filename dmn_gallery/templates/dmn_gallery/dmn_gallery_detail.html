@@ -1,0 +1,35 @@
+<div id="myModal_{{form_id}}" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="padding: 20px;">
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Дополнительные данные</h3>
+</div>
+<div class="modal-body">
+<form action="{% url 'upload_gallery_details' %}" method="post" class="form-horizontal">
+    <fieldset>
+    {% csrf_token %}
+    <input type="hidden" name="img_name" value="{{img_name}}">
+    {% for f in form %}
+        <div class="control-group">
+        {% if f.label != '' %}
+              <h6><label class="control-label label" for="">{{ f.label }}</label></h6>
+        {% endif %}
+            <div class="controls">
+                {{ f }}
+          {% for k,v in res.help.items %}
+            {% if f.name in res.help %}
+              {% if f.name = k %}
+                <span class="help-block">{{ v }}</span>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+</fieldset>
+</div>
+<div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Отмена</button>
+    <input type="submit" class="btn btn-primary" name="Сохранить">
+</div>
+</form>
+</div>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <title>Файлы</title>
+      <meta charset="utf-8" />
+<script src="/static/dmn/elfinder2/jquery/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/dmn/elfinder2/jquery/jquery-ui-1.10.1.custom.min.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="/static/dmn/elfinder2/jquery/ui-themes/smoothness/jquery-ui-1.10.1.custom.min.css" type="text/css" media="screen"  charset="utf-8">
+<link rel="stylesheet" href="/static/dmn/elfinder2/css/elfinder.min.css" type="text/css" media="screen"  charset="utf-8">
+<link rel="stylesheet" href="/static/dmn/elfinder2/css/theme.css" type="text/css" media="screen"  charset="utf-8">
+
+<script src="/static/dmn/elfinder2/js/elfinder.min.js" type="text/javascript" type="text/javascript" charset="utf-8"></script>
+<script src="/static/dmn/elfinder2/js/i18n/elfinder.ru.js" type="text/javascript" type="text/javascript" charset="utf-8"></script>
+<script src="/static/dmn/elfinder2/js/proxy/elFinderSupportVer1.js" type="text/javascript" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript" charset="utf-8">
+    // Helper function to get parameters from the query string.
+    function getUrlParam(paramName) {
+        var reParam = new RegExp('(?:[\?&]|&amp;)' + paramName + '=([^&]+)', 'i') ;
+        var match = window.location.search.match(reParam) ;
+        
+        return (match && match.length > 1) ? match[1] : '' ;
+    }
+
+    $().ready(function() {
+        var funcNum = getUrlParam('CKEditorFuncNum');
+
+        var elf = $('#elfinder').elfinder({
+            url : '/dmn/elfinder2_connector/',
+            transport : new elFinderSupportVer1(),
+            getFileCallback : function(file) {
+                var id = getUrlParam('id');
+                if (id) {
+                    $("#"+id, window.opener.document).val(file.url);
+                    self.close()
+                }
+                else {
+                window.opener.CKEDITOR.tools.callFunction(funcNum, file.url);
+                // console.log(file.url)
+                }
+                window.close();
+            },
+            resizable: false
+        }).elfinder('instance');
+    });
+</script>
+
+
+</head>
+<body>
+	<div id="elfinder">filemanager loading...</div>
+</body>
+</html>

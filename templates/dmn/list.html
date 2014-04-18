@@ -1,0 +1,139 @@
+{% extends 'dmn_base.html' %}
+{% block head %}
+    {% load staticfiles %}
+    {% load dmn_widgets %}
+    {% load urls %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'dmn/cleditor/jquery.cleditor.css' %}">
+    <script src ="{% static 'dmn/cleditor/jquery.cleditor.min.js' %}"></script>
+{% endblock head %}
+{% block body %}
+    <div class="widget_container">
+        <div class="inner_wrapper">{{ 'MESS_LIST_HEAD'|mess }}</div>
+        {% if help_model %}
+            <div class="inner_wrapper">{{ 'HELP_MODEL'|mess }}</div>
+        {% endif %}
+        <div class="well nomargin">
+            <div class="navbar navbar-static navbar_as_heading">
+                <div class="navbar-inner">
+                    <div class="container" style="width: auto;">
+                        <a class="brand">{{ title_model }}</a>
+                        <a class="btn toggle_field_search" href="#">{{ 'BUTT_LIST_FIND_FIELD'|mess }}</a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a class="btn toggle_field_hidden" href="#">{{ 'BUTT_LIST_HIDE'|mess }}</a>
+                        &nbsp;
+                        {% if hidden_fields %}  
+                        <div class="btn btn-group">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="icon-eye"></i> {{'BUTT_LIST_SHOW'|mess}}
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% for item in hidden_fields %}
+                                    <li><a href="{% del_params request.get_full_path hide_field=item %}">{{item}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                        
+                        {% if 'create' not in action_hide %}
+                            <a class="btn pull-right" href="{% url 'dmn_create' model=model %}">{{ mess_add }}</a>
+                        {% endif %}
+                        {% if 'destroy' not in action_hide %}
+                            <button type="reset" name="{{ model }}" class="btn btn-danger chbx_delete pull-right"
+                                    style="margin-right: 5px;">
+                                <i class="icon-trash icon-white"></i>
+                                {{ mess_list_mark_delete }}
+                            </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <table class="table smallfont">
+                <thead>
+                <tr class="field_search subnav nobg" style="display:none;">
+                    {% if 'destroy' not in action_hide %}
+                        <td></td>
+                    {% endif %}
+                    {% for f in model_columns %}
+                        <td class="field_hidden_class_{{f}}">
+                            <form style="margin: 0px;" method="get">
+                                {% for k,v in request.GET.iteritems %}
+                                    {% if k != 'search_by_field' and k != 'search_word' %}
+                                        <input type="hidden" name="{{k}}" value="{{v}}">
+                                    {% endif %}
+                                {% endfor %}
+                                <input type="hidden" name="search_by_field" value="{{f.name}}">
+                                {% if request.GET.search_by_field == f.name %}
+                                <input class="input_auto" type="text" name="search_word" style="width:60%; z-index:5000;" value="{{request.GET.search_word}}">
+                                {% else %}
+                                <input class="input_auto" type="text" name="search_word" style="width:60%; z-index:5000;">
+                                {% endif %}
+                                <input type="submit" value="{{'BUTT_OK'|mess}}" class="label label-info">
+                            </form>
+                        </td>
+                    {% endfor %}
+                </tr>
+                <tr class="field_hidden subnav nobg" style="display:none;">
+                    {% if 'destroy' not in action_hide %}
+                        <td></td>
+                    {% endif %}
+                        {% for f in model_columns %}
+                        <td class="field_hidden_class">
+                            <a href="{% overload_params request.get_full_path hide_field=f.name %}" class="btn btn-mini j_field_hidden_button" href="#"><i class="icon-star"></i>{{'BUTT_FIELD_HIDE'|mess}}</a>
+                        </td>
+                        {% endfor %}
+                </tr>
+                <tr>
+                    {% if 'destroy' not in action_hide %}
+                        <td><input id="chbx_global" type="checkbox" value="nil" name="chbx_global"></td>
+                    {% endif %}
+                    {% for i in model_columns %}
+                        <td class="j_grid_sort header sorting field_hidden_class_{{i.name}} {% if sort_by == i.name %}sorting_{{ sort }}{% endif %}" id="{{ i.name }}"><a href="{% add_params request.get_full_path sort_by=i.name sort=sort %}">{{ i.verbose }}</a><br></td>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                    {% for d in list %}
+                        <tr id="{{d.id}}">
+                            {% if 'destroy' not in action_hide %}
+                            <td style="width:20px;"><input class="chbx" type="checkbox" value="{{ d.id }}" name="chbx">
+                            </td>
+                            {% endif %}
+                            {% for i in model_columns %}
+                                {% if forloop.first %}
+                                    <td class="field_hidden_class_{{d.id}}" style="padding-bottom: 30px;">
+                                       <a class="post_title">{{d.id}}</a>
+                                        <div class="operation" style="position: absolute;">
+                                            <div class="btn-group" style="display: none;">
+                                                {% if 'update' not in action_hide %}
+                                                    <a class="btn btn-small ibtn-action" href="{% url 'dmn_update' model=model id=d.id %}"><i class="icon-pencil-1"></i> {{'BUTT_LIST_UPDATE'|mess}}</a>
+                                                {% endif %}
+                                                {% if 'destroy' not in action_hide %}
+                                                    <a class="btn btn-small ibtn-action confirm_delete" href="{% url 'destroy' model=model id=d.id %}" style="color:red;"><i class="icon-trash-empty"></i> {{'BUTT_LIST_DELETE'|mess}}</a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </td>
+                                {% else %}
+                                    <td class="dblcl sort_{{i.0}} field_hidden_class_{{i.0}}">
+                                    {% dmn_list model i.name list_fields d %}
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}                
+                </tbody>
+            </table>
+            <div class="subnav nobg">
+                {% pagination page_obj paginator model request.get_full_path %}
+                <div class="" style="">
+                    <form>
+                        <span style="font-size: 11px;">выводить по: </span>
+                        <input style="width:90px;" type="text" name="per_page" value="{{ paginate_by }}">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

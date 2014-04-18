@@ -1,0 +1,13 @@
+{% load dmn_gallery_widgets %}
+<li style="position: relative;" class="ui-state-default more_inf im_{{ r_slug_name|safe }}" id="{{ r_name|safe }}">
+<a href="{{ r_upload_tmp|safe }}" class="thumbnail" target="_blank">
+<img class="context" name="{{ r_slug_name|safe }}" title="" src="{{ r_result|safe }}">
+</a>
+<ul class="dropdown-menu context_id_{{ r_slug_name|safe }}" style="display: none;">
+<li><a href="#myModal_form_id_{{ r_slug_name|safe }}" data-toggle="modal">дополнительно</a></li>
+<li class="divider"></li>
+<li><a class="aj_delete_hide_img" id='' name='{{ r_name|safe }}' path='' style="color: red;" href="#">удалить</a></li>
+</ul>
+</li>
+
+<div id="no_sortable">{% dmn_gallery_detail r_slug_name r_slug_name %}</div>

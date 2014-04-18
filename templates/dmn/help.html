@@ -1,0 +1,212 @@
+{% extends 'dmn_base.html' %}
+{% load dmn_widgets %}
+
+{% block body %}
+
+<STYLE TYPE="text/css">
+.tab-content {
+width: auto;
+}
+img[alt=shot] { width: 100%; }
+img[alt=auto] { width: auto; }
+</STYLE>
+<div class="main_content">
+	<div class="widget_container">
+                            <div class="well">
+                                
+                                <!-- navbar as heading -->
+                                <div class="navbar navbar-static navbar_as_heading">
+                                    <div class="navbar-inner">
+                                        <div class="container" style="width: auto;">
+                                            <a class="brand">Справочная информация</a>
+                                        </div>
+                                    </div>
+                                </div><!-- navbar as heading -->
+
+
+                               
+                                
+                        <ul class="nav nav-tabs myTab">
+                            <li class="active"><a href="#WEhome" data-toggle="tab"><i class="icon-large icon-th"></i>Основы</a></li>
+                           
+                                
+                            {% if shop_new %}
+                                <li><a href="#WEshop" data-toggle="tab"><i class="icon-large icon-th"></i> Магазин</a></li> 
+                            {% endif %}
+                           
+                            {% comment %}
+                                
+                            
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-large icon-th"></i> Others <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#WEdropdown1" data-toggle="tab"><i class="icon-large icon-th-large"></i> Bottom Tabs</a></li>
+                                    <li><a href="#WEdropdown2" data-toggle="tab"><i class="icon-large icon-th-large"></i> Left + Right</a></li>
+                                </ul>
+                            </li>
+
+                            {% endcomment %}
+                        
+                        </ul>
+                        
+                        <div class="tab-content myTabContent">
+                            <div class="tab-pane fade in active" id="WEhome">
+                            
+                                <div class="tabbable tabs-left xdefault">
+                                
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#WElA" data-toggle="tab">Список</a></li>
+                                        <li class=""><a href="#WElB" data-toggle="tab">Правка</a></li>
+                                        <li class=""><a href="#WElC" data-toggle="tab">Дерево</a></li>
+                                        <li class=""><a href="#WElD" data-toggle="tab">Файлы</a></li>
+                                        <li class=""><a href="#WElE" data-toggle="tab">SEO</a></li>
+                                    </ul>
+                                    
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="WElA">
+                                            <div class="inner"> 
+                                                {{ilist}}
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="WElB">
+                                            <div class="inner">
+                                                {{createup}}
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="WElC">
+                                            <div class="inner">
+                                                {{tree}}
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="WElD">
+                                            <div class="inner">
+                                                {{fm}}
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="WElE">
+                                            <div class="inner">
+                                                {{seo}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="tab-pane fade" id="WEshop">
+
+                                <div class="tabbable tabs-left xdefault">
+                                
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#WEshop_menu" data-toggle="tab">Меню</a></li>
+                                        <li class=""><a href="#WEshop_products" data-toggle="tab">Товары</a></li>
+                                        <li class=""><a href="#WEshop_options" data-toggle="tab">Настройки</a></li>
+                                        <li class=""><a href="#WEshop_params" data-toggle="tab">Параметры</a></li>
+                                    </ul>
+                                    
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="WEshop_menu">
+                                            <div class="inner"> 
+                                                {{sh_menu}}
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="WEshop_products">
+                                            <div class="inner">
+                                                {{sh_products}}
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="WEshop_options">
+                                            <div class="inner">
+                                                {{sh_options}}
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="WEshop_params">
+                                            <div class="inner">
+                                                {{sh_params}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                            
+                            <div class="tab-pane fade" id="WEdropdown1">
+
+                                <div class="tabbable tabs-below xdefault">
+                                
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="WE3A">
+                                            <div class="inner">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</div>
+                                        </div>
+                                        <div class="tab-pane" id="WE3B">
+                                            <div class="inner">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</div>
+                                        </div>
+                                        <div class="tab-pane" id="WE3C">
+                                            <div class="inner">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#WE3A" data-toggle="tab"><i class="icon-large icon-cog-1"></i></a></li>
+                                        <li class=""><a href="#WE3B" data-toggle="tab"><i class="icon-large icon-camera"></i></a></li>
+                                        <li><a href="#WE3C" data-toggle="tab"><i class="icon-large icon-inbox"></i></a></li>
+                                    </ul>
+                                    
+                                </div>
+                            
+                            </div>
+                            
+                            <div class="tab-pane fade" id="WEdropdown2">
+
+                                <div class="tabbable tabs-left xdefault">
+                                
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#WE4A" data-toggle="tab"><i class="icon-large icon-cog-1"></i></a></li>
+                                        <li class=""><a href="#WE4B" data-toggle="tab"><i class="icon-large icon-camera"></i></a></li>
+                                        <li><a href="#WE4C" data-toggle="tab"><i class="icon-large icon-inbox"></i></a></li>
+                                    </ul>
+                                    
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="WE4A">
+
+                                            <div class="tabbable tabs-right xdefault small">
+                                            
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active"><a href="#WE5A" data-toggle="tab"><i class="icon-large icon-pencil"></i></a></li>
+                                                    <li class=""><a href="#WE5B" data-toggle="tab"><i class="icon-large icon-picture"></i></a></li>
+                                                    <li><a href="#WE5C" data-toggle="tab"><i class="icon-large icon-user"></i></a></li>
+                                                </ul>
+                                                
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="WE5A">
+                                                        <div class="inner">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</div>
+                                                    </div>
+                                                    <div class="tab-pane" id="WE5B">
+                                                        <div class="inner">asfdasfasfdasfdasd</div>
+                                                    </div>
+                                                    <div class="tab-pane" id="WE5C">
+                                                        <div class="inner">zxvzxcvzxvzxvxzcvt amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                        </div>
+                                        <div class="tab-pane" id="WE4B">
+                                            <div class="inner">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</div>
+                                        </div>
+                                        <div class="tab-pane" id="WE4C">
+                                            <div class="inner">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                            
+                        </div>
+                            
+                            </div>
+                        </div>
+    
+    </div>
+	
+{% endblock body %}

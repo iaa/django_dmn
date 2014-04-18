@@ -1,0 +1,175 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-26 17:50+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: const.py:33
+msgid ""
+"Circled field values mean that they are available for quick editing by "
+"double-click of the mouse."
+msgstr ""
+"Обведенные поля означают, что они доступны для редактирования по двойному "
+"клику мыши."
+
+#: const.py:34
+msgid "Search by field. Input text and press ok."
+msgstr "Поиск по полю. Введите текст и нажмите ok."
+
+#: const.py:35
+msgid "Thank's. You're message was send to admin."
+msgstr "Спасибо. Ваше сообщение отправлено администратору."
+
+#: const.py:36
+msgid "Sorry. Service temporary closed."
+msgstr "Извините. Сервис временно закрыт."
+
+#: const.py:37
+msgid "Sorry, the object is not found."
+msgstr "Извините, объект не найден."
+
+#: const.py:38
+msgid "Images manager"
+msgstr "Управление изображениями."
+
+#: const.py:39
+msgid "Press to view or hide images manager"
+msgstr "Нажмите чтобы открыть или стрятать управление изображениями."
+
+#: const.py:44
+msgid "Ok, data updated successfully, id"
+msgstr "Ok, данные успешно обновлены, поз."
+
+#: const.py:45
+msgid "Ok, data created successfully, id"
+msgstr "Ok, данные успешно добавлены, поз."
+
+#: const.py:46
+msgid "Ok, data deleted successfully, id"
+msgstr "Ok, данные успешно удалены, поз."
+
+#: const.py:47
+msgid ""
+"Sorry, you have not enough rights for this action. Contact administrator."
+msgstr ""
+"Извините, у Вас недостаточно прав для этого действия. Обратитесь к "
+"администратору."
+
+#: const.py:48
+msgid "Error. Call to admin"
+msgstr "Ошибка. Свяжитесь с администратором."
+
+#: const.py:49
+msgid "Err. Changes is not correct. Ancestor is hide."
+msgstr "Ошибка. Изменения некорректны. Скрыт предок."
+
+#: const.py:50
+msgid "Please note, the category value must not have descendants."
+msgstr "Обратите внимание, значение категории не должно иметь потомков."
+
+#: const.py:51
+msgid "Sorry, must be filled only one of the fields."
+msgstr "Извините, должно быть заполнено только одно из полей."
+
+#: const.py:52
+msgid "Sorry, Email addresses must be unique."
+msgstr "Извините, адрес Email должен быть уникальным."
+
+#: const.py:53
+msgid "Sorry, one of the fields must be filled in."
+msgstr "Извините, одно из полей должно быть заполнено."
+
+#: const.py:54
+msgid "Note that the value of the tag must not have descendants."
+msgstr "Обратите внимание, значение тега не должно иметь потомков."
+
+#: const.py:58
+msgid "Search by field"
+msgstr "Поиск по полю"
+
+#: const.py:59
+msgid "Hide fields"
+msgstr "Скрыть поля"
+
+#: const.py:60 const.py:75
+msgid "Hide field"
+msgstr "Скрыть"
+
+#: const.py:61
+msgid "Show fields"
+msgstr "Показать поля"
+
+#: const.py:62
+msgid "Delete selected"
+msgstr "Удалить выбранное"
+
+#: const.py:63
+msgid "Update"
+msgstr "Править"
+
+#: const.py:64
+msgid "Delete"
+msgstr "Удалить"
+
+#: const.py:65
+msgid "Ok"
+msgstr "Ok"
+
+#: const.py:66
+msgid "Add"
+msgstr "Добавить"
+
+#: const.py:70
+msgid "Title"
+msgstr "Титл"
+
+#: const.py:71
+msgid "ID"
+msgstr "ID"
+
+#: const.py:72
+msgid "Name"
+msgstr "Название"
+
+#: const.py:73
+msgid "Header"
+msgstr "Заголовок"
+
+#: const.py:74
+msgid "Hide?"
+msgstr "Скрыто?"
+
+#: const.py:76
+msgid "Link"
+msgstr "Ссылка"
+
+#: const.py:77
+msgid "Sort"
+msgstr "Сортировка"
+
+#: const.py:78
+msgid "Ancestor"
+msgstr "Предок"
+
+#: const.py:79
+msgid "Created_at"
+msgstr "Создано"
+
+#: const.py:80
+msgid "Updated_at"
+msgstr "Обновлено"

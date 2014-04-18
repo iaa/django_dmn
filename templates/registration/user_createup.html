@@ -1,0 +1,25 @@
+{% extends "dmn_base.html" %}
+{% block body %}
+<div class="main_content">
+<div class="widget_container">
+<div class="well">
+	<form class="createup form-horizontal" method="post">
+        <fieldset>
+		{% csrf_token %}
+        {% for f in form %}
+        <div class="control-group">
+            <h6><label class="control-label label" for="">{{ f.label }}</label></h6>
+            <div class="controls">
+                {{ f }}
+            </div>
+        </div>
+        {% endfor %}
+		<div class="subnav nobg">
+        <input type="submit" name="createups" class="submit btn pull-right">
+    </div>
+    </fieldset>
+	</form>
+    </div>
+    </div>
+    </div>
+{% endblock body %}

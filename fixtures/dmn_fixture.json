@@ -1,0 +1,130 @@
+[
+{
+    "pk": 1, 
+    "model": "dmn.dmnmenu", 
+    "fields": {
+        "rght": 14, 
+        "hide": false, 
+        "name": "Admin", 
+        "parent": null, 
+        "level": 0, 
+        "created_at": "2014-04-17T17:42:06.999", 
+        "updated_at": "2014-04-17T18:42:17.922", 
+        "lft": 1, 
+        "link": "#", 
+        "tree_id": 2
+    }
+},
+{
+    "pk": 2, 
+    "model": "dmn.dmnmenu", 
+    "fields": {
+        "rght": 5, 
+        "hide": false, 
+        "name": "\u041c\u0435\u043d\u044e \u0430\u0434\u043c. \u0441\u043f\u0438\u0441\u043e\u043a", 
+        "parent": 1, 
+        "level": 1, 
+        "created_at": "2014-04-17T17:44:58.661", 
+        "updated_at": "2014-04-17T17:46:24.148", 
+        "lft": 4, 
+        "link": "/dmn/dmnmenu/list/", 
+        "tree_id": 2
+    }
+},
+{
+    "pk": 3, 
+    "model": "dmn.dmnmenu", 
+    "fields": {
+        "rght": 2, 
+        "hide": false, 
+        "name": "\u0413\u043b\u0430\u0432\u043d\u0430\u044f", 
+        "parent": null, 
+        "level": 0, 
+        "created_at": "2014-04-17T17:45:38.752", 
+        "updated_at": "2014-04-17T19:34:59.313", 
+        "lft": 1, 
+        "link": "/dmn/", 
+        "tree_id": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "dmn.dmnmenu", 
+    "fields": {
+        "rght": 3, 
+        "hide": false, 
+        "name": "\u041c\u0435\u043d\u044e \u0430\u0434\u043c. \u0434\u0435\u0440\u0435\u0432\u043e", 
+        "parent": 1, 
+        "level": 1, 
+        "created_at": "2014-04-17T18:49:52.453", 
+        "updated_at": "2014-04-17T19:35:00.413", 
+        "lft": 2, 
+        "link": "/dmn/dmnmenu/tree/", 
+        "tree_id": 2
+    }
+},
+{
+    "pk": 5, 
+    "model": "dmn.dmnmenu", 
+    "fields": {
+        "rght": 8, 
+        "hide": false, 
+        "name": "Users list", 
+        "parent": 8, 
+        "level": 2, 
+        "created_at": "2014-04-17T18:51:15.972", 
+        "updated_at": "2014-04-17T19:48:15.894", 
+        "lft": 7, 
+        "link": "/dmn/user/list/", 
+        "tree_id": 2
+    }
+},
+{
+    "pk": 6, 
+    "model": "dmn.dmnmenu", 
+    "fields": {
+        "rght": 12, 
+        "hide": false, 
+        "name": "Perms", 
+        "parent": 8, 
+        "level": 2, 
+        "created_at": "2014-04-17T19:46:17.875", 
+        "updated_at": "2014-04-17T19:46:17.875", 
+        "lft": 11, 
+        "link": "/dmn/permission/list/", 
+        "tree_id": 2
+    }
+},
+{
+    "pk": 7, 
+    "model": "dmn.dmnmenu", 
+    "fields": {
+        "rght": 10, 
+        "hide": false, 
+        "name": "Groups", 
+        "parent": 8, 
+        "level": 2, 
+        "created_at": "2014-04-17T19:47:56.075", 
+        "updated_at": "2014-04-17T19:47:56.075", 
+        "lft": 9, 
+        "link": "/dmn/group/list/", 
+        "tree_id": 2
+    }
+},
+{
+    "pk": 8, 
+    "model": "dmn.dmnmenu", 
+    "fields": {
+        "rght": 13, 
+        "hide": false, 
+        "name": "Users", 
+        "parent": 1, 
+        "level": 1, 
+        "created_at": "2014-04-17T19:48:05.977", 
+        "updated_at": "2014-04-17T19:48:05.977", 
+        "lft": 6, 
+        "link": "#", 
+        "tree_id": 2
+    }
+}
+]

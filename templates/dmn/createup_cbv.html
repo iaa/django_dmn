@@ -1,0 +1,209 @@
+{% extends 'dmn_base.html' %}
+{% load dmn_widgets %}
+{% load dmn_gallery_widgets %}
+
+{% block body %}
+<script type="text/javascript">
+           $(function() {
+               $('.iformset').formset();
+           })
+           function repl_func(id) {
+              window.open('/dmn/elfinder_partial/?id='+id+'&CKEditorFuncNum=2&langCode=ru','','with=500,height=300');
+           }
+           function repl_func_clear(id) {
+              $('#'+id).val('');
+           }
+{% comment %}
+$(document).ready(function(){
+  $('.repl').live("click", function(){
+                    return '/dmn/elfinder_partial/?id='+$(this).attr('name')+'s&CKEditorFuncNum=2&langCode=ru','','with=500,height=300';
+                    window.open('/dmn/elfinder_partial/?id='+$(this).attr('name')+'s&CKEditorFuncNum=2&langCode=ru','','with=500,height=300');
+                  }
+                );
+})
+
+
+function opionGetText(id) {
+        $.ajax({
+             url: "{% url 'ajax_checkbox_options' %}",
+             type: 'get',
+             data: 'id=' + id + '&product_id={{res.id}}',
+             dataType: 'json',
+             async:false,
+             success: function(json) {
+                out = Array(json['text'],json['ok']);
+             }
+         });
+        return out
+    }
+
+    $("input:checkbox.ch_options").live('change', function(){
+        var id = $(this).val();
+        var text = opionGetText(id);
+        if (id != 'on' && text[1] == '1') {
+            if (this.checked) {
+                if ($(this).hasClass('textareaClosed')) {
+                    $(this).parent('label').after('<div style="color: gray;" id="ch_div_id_'+id+'" class="ta_options"><p>Заданные параметры:</p><p>'+text[0]['option_def']+'</p><p>Свои параметры: (Просто измените заданные параметры, если хотите использовать свои)</p><textarea name="ch_options#'+id+'" rows=7 style="width:53%;">'+text[0]['option_self']+'</textarea></div>')
+                    $(this).removeClass('textareaClosed');
+                }
+            }
+            else {
+                $('#ch_div_id_'+id+'.ta_options').remove();
+                $(this).addClass('textareaClosed');
+            }
+        }
+        else {
+            $(this).attr('checked', false);
+        }
+        
+    });
+{% endcomment %}
+       </script>
+<div class="main_content">
+<div class="widget_container">
+  {% if help_model_createup %}
+    <div class="inner_wrapper">{{ help_model_createup }}</div>
+  {% endif %}
+<div class="well">
+  <div class="navbar navbar-static navbar_as_heading">
+                <div class="navbar-inner">
+                  <div class="container" style="width: auto;">
+                    <a class="brand"><i class="icon-th-large-1"></i> {{ title_model }} - обновление</a>
+                  </div>
+                </div>
+              </div>
+
+    {% if model %}
+      {% dmn_gallery model 'gall' id %}
+    {% endif %}
+  
+  
+  
+  <form class="createup form-horizontal gall" method="post">
+  	<fieldset>
+  	{% csrf_token %}
+    {% if wiggets.meta_exists %}
+      <div class="hero-unit">
+      <h3>SEO-метаданные</h3>
+      {% for f in wiggets.meta_exists %}
+        <div class="control-group">
+          <h6><label class="control-label label" for="">{{ f.label }}</label></h6>
+          <div class="controls">
+            {{ f }}
+            {% for k,v in help_meta.items %}
+            {% if f.name in res.help_meta %}
+              {% if f.name = k %}
+                <span class="help-block">{{ v }}</span>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+    {% endif %}
+    {% for f in form %}
+    	<div class="control-group">
+        {% if f.label != '' %}
+    		  <h6><label class="control-label label" for="">{{ f.label }}</label></h6>
+        {% endif %}
+    		<div class="controls">
+    			{{ f }}
+          {% for k,v in res.help.items %}
+            {% if f.name in res.help %}
+              {% if f.name = k %}
+                <span class="help-block">{{ v }}</span>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+    		</div>
+    	</div>
+    {% endfor %}
+    {% if res.more_content.attach_exists %}
+      {{ res.more_content.attach_exists.management_form }}
+      {% for form in res.more_content.attach_exists %}
+        <div class="hero-unit iformset iformset_remove_{{form.initial.id}}">
+        <h3>Вложение</h3>
+        {% for f in form %}
+          <div class="control-group">
+            {% if f.label != '' %}
+              <h6><label class="control-label label" for="">{{ f.label }}</label></h6>
+            {% endif %}
+            <div class="controls">
+              {{ f }}
+            </div>
+          </div>
+        {% endfor %}
+        <button type="reset" class="btn btn-danger pull-right aj_del_attach" name="{{form.initial.id}}">
+            <i class="icon-trash icon-white"></i> Удалить это вложение
+        </button>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+
+
+    {% if res.more_content.params_exists %}
+    {{ res.more_content.params_exists.management_form }}
+
+      <h3>Параметры продукта</h3>
+      <ul class="nav nav-tabs myTab">
+      {% for form in res.more_content.params_exists %}
+        {% for f in form %}
+          {% if forloop.first %}
+   
+            <li><a href="#WE{{f.html_name}}" data-toggle="tab"><i class="icon-large icon-th"></i>{{f.value}}</a></li>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+      </ul>
+      <div class="tab-content myTabContent">
+
+      {% for form in res.more_content.params_exists %}
+      
+        {% for f in form %}
+        {% if forloop.first %}
+          <div class="tab-pane fade" id="WE{{f.html_name}}">
+          {% endif %}
+                <div class="tabbable tabs-left xdefault">
+                  <div class="control-group">
+                                                <h6><label class="control-label label" for="">{{ f.label }}</label></h6>
+                                                <div class="controls">
+                                                  {{ f }}
+                                                  {% for k,v in res.help_shop_params.items %}
+                                                  {% if f.name in res.help_shop_params %}
+                                                    {% if f.name = k %}
+                                                      <span class="help-block">{{ v }}</span>
+                                                    {% endif %}
+                                                  {% endif %}
+                                                {% endfor %}
+                                                </div>
+                                              </div>
+                </div>
+                
+          
+        {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+
+{% endif %}     
+
+
+
+
+
+
+
+
+
+    <div class="subnav nobg">
+        <input type="submit" name="createups" class="submit btn pull-right">
+    </div>
+    </fieldset>
+  </form>
+
+</div>
+</div>
+</div>
+{% endblock %}

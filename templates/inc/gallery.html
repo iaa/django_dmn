@@ -1,0 +1,48 @@
+    {% load iwidges %}
+    {% comment %}
+    <script src="/static/dmn/js/tools/jquery.tools.min.js" type="text/javascript" charset="utf-8"></script>
+    {% endcomment %}
+    <form class="form_gallery form-horizontal" action="/dmn/upload_gallery/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <fieldset>
+        <div class="control-group">
+            <h6><label class="control-label label img input_auto" for="" rel="popover" data-content="{{ res.mess_cont }}" data-original-title="{{ res.mess_head }}" data-placement="bottom">картинки (+)</label></h6>
+            <div class="controls img_hide">
+                <input class="input_upload" type="file" name="filename" multiple>
+            </div>
+        </div>
+        </fieldset>
+    </form>
+    
+    <div class="progress img_hide">
+        <div class="bar"></div >
+        <div class="percent">0%</div >
+    </div>
+
+    <ul class="thumbnails gallery sortable img_hide navbar">
+      {% if res.more_content.photos %}
+        {% for x in res.more_content.photos %}
+            <li style="position: relative;" class="ui-state-default more_inf im_{{ x.img|slugify }}" id="{{ x.id }}~{{ x.img }}">
+            <a href="/media/dmn_gallery/gallery/{{ x.path }}/{{ x.img }}" class="thumbnail" target="_blank">
+              {% if x.hide == 1 %}
+              <img style="opacity: 0.3;" class="context" id="{{ x.img|slugify }}" name="{{ x.img|slugify }}" title='' src="{% resizeimg x.img '/media/dmn_gallery/gallery' x.path %}" />
+              {% else %}
+              <img class="context" id="{{ x.img|slugify }}" name="{{ x.img|slugify }}" title='' src="{% resizeimg x.img '/media/dmn_gallery/gallery' x.path %}" />
+              {% endif %}
+            </a>
+            <ul class="dropdown-menu context_id_{{ x.img|slugify }}" style="display: none;">
+              {% comment %}
+              <li><a class="" id="" name="" href="#">операции</a></li>
+              <li class="divider"></li>
+              {% endcomment %}
+              {% if x.hide == 1 %}
+                <li><a class="aj_delete_hide_img cls_{{ x.img|slugify }}" id="{{ x.id }}" name="{{ x.img }}" path="recovery" href="#">Восстановить</a></li>
+              {% else %}
+                <li><a class="aj_delete_hide_img cls_{{ x.img|slugify }}" id="{{ x.id }}" name="{{ x.img }}" path="hide" href="#">Скрыть</a></li>
+              {% endif %}
+              <li><a class="aj_delete_hide_img" id="{{ x.id }}" name="{{ x.img }}" path="{{ x.path }}" style="color: red;" href="#">Удалить</a></li>
+            </ul>
+          </li>
+        {% endfor %}
+      {% endif %}
+    </ul>

@@ -1,0 +1,69 @@
+{% extends 'dmn_base.html' %}
+{% load iwidges %}
+{% load dmn_gallery_widgets %}
+
+{% block body %}
+
+<div class="main_content">
+<div class="widget_container">
+    <div class="well">
+        <form class="createup form-horizontal gall" method="post">
+          {% csrf_token %}
+            <fieldset>
+{{ params_exists.management_form }}
+
+      <h3>Параметры продукта по умолчанию</h3>
+      <ul class="nav nav-tabs myTab">
+      {% for form in params_exists %}
+        {% for f in form %}
+          {% if forloop.first %}
+   
+            <li><a href="#WE{{f.html_name}}" data-toggle="tab"><i class="icon-large icon-th"></i>{{f.value}}</a></li>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+      </ul>
+      <div class="tab-content myTabContent">
+
+      {% for form in params_exists %}
+      
+        {% for f in form %}
+        {% if forloop.first %}
+          <div class="tab-pane fade" id="WE{{f.html_name}}">
+          {% endif %}
+                <div class="tabbable tabs-left xdefault">
+                  <div class="control-group">
+                                                <h6><label class="control-label label" for="">{{ f.label }}</label></h6>
+                                                <div class="controls">
+                                                  {{ f }}
+                                                  {% for k,v in help_shop_params.items %}
+                                                  {% if f.name in help_shop_params %}
+                                                    {% if f.name = k %}
+                                                      <span class="help-block">{{ v }}</span>
+                                                    {% endif %}
+                                                  {% endif %}
+                                                {% endfor %}
+                                                </div>
+                                              </div>
+                </div>
+                
+          
+        {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+
+
+
+
+<div class="subnav nobg">
+        <input type="submit" name="createups" class="submit btn pull-right">
+    </div>
+    </fieldset>
+  </form>
+
+</div>
+</div>
+</div>
+
+{% endblock %}
